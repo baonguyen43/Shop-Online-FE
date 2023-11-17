@@ -1,4 +1,4 @@
-import Grid02 from "@/#@/components/Grid/Grid2";
+import TopCategories from "@/#@/components/Share/TopCategories";
 import axiosClient from "@/#@/libraries/axiosClient";
 import React from "react";
 
@@ -7,7 +7,7 @@ const Category = ({ category }: any): JSX.Element | null => {
 
   return (
     <React.Fragment>
-      <Grid02 imageSrc="/image/icon/tele.png" categories={category} />
+      <TopCategories imageSrc="/image/icon/tele.png" categories={category} />
     </React.Fragment>
   );
 };

@@ -7,7 +7,7 @@ type Props = {
   desc?: string;
   categories?: any;
 };
-const Grid02 = React.forwardRef<HTMLDivElement, Props>(
+const TopCategories = React.forwardRef<HTMLDivElement, Props>(
   ({ imageSrc, categories }: Props, ref): JSX.Element | null => {
     return (
       <React.Fragment>
@@ -45,5 +45,5 @@ const Grid02 = React.forwardRef<HTMLDivElement, Props>(
   }
 );
 
-Grid02.displayName = "Grid02";
-export default Grid02;
+TopCategories.displayName = "TopCategories";
+export default TopCategories;

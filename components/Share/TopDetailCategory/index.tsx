@@ -6,7 +6,7 @@ import Image from "next/image";
 type Props = {
   products?: any;
 };
-const Grid01 = React.forwardRef<HTMLDivElement, Props>(
+const TopDetailCategory = React.forwardRef<HTMLDivElement, Props>(
   ({ products }: Props, ref): JSX.Element | null => {
     return (
       <React.Fragment>
@@ -16,16 +16,14 @@ const Grid01 = React.forwardRef<HTMLDivElement, Props>(
               products.map((p: any) => {
                 return (
                   // eslint-disable-next-line react/jsx-key
-                  <div className={styles.card} id={p.id}>
+                  <div className={styles.card} key={p.id}>
                     <div className={styles.top}>
-                      <Link href={`/products/${p.id}`}>
-                        <Image
-                          src="/image/products/loading.jpg"
-                          alt="sp"
-                          width={188}
-                          height={188}
-                        />
-                      </Link>
+                      <Image
+                        src="/image/products/loading.jpg"
+                        alt="sp"
+                        width={188}
+                        height={188}
+                      />
                     </div>
                     <div className={styles.bottom}>
                       <span> {p.name} </span>
@@ -50,5 +48,5 @@ const Grid01 = React.forwardRef<HTMLDivElement, Props>(
   }
 );
 
-Grid01.displayName = "Grid01";
-export default Grid01;
+TopDetailCategory.displayName = "TopDetailCategory";
+export default TopDetailCategory;

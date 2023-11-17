@@ -1,11 +1,9 @@
 import axiosClient from "@/#@/libraries/axiosClient";
 import { Inter } from "next/font/google";
-import React, { useCallback, useEffect, useState } from "react";
+import React from "react";
 import HomeBanner from "../components/Banner/HomeBanner";
-import Grid01 from "../components/Grid/Grid01";
-import TopCategories from "../components/TopCategory";
-import Categories from "./categories";
-import Grid02 from "../components/Grid/Grid2";
+import ListProducts from "../components/Share/ListProducts";
+import TopCategories from "../components/Share/TopCategories";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,8 +32,8 @@ export default function Home({ category, products }: Props) {
     <React.Fragment>
       <div>
         <HomeBanner />
-        <Grid02 imageSrc="/image/icon/tele.png" categories={category} />
-        <Grid01 products={products} />
+        <TopCategories imageSrc="/image/icon/tele.png" categories={category} />
+        <ListProducts products={products} />
       </div>
     </React.Fragment>
   );

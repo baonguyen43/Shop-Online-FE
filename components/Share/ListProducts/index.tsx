@@ -6,7 +6,7 @@ import Image from "next/image";
 type Props = {
   products?: any;
 };
-const Grid03 = React.forwardRef<HTMLDivElement, Props>(
+const ListProducts = React.forwardRef<HTMLDivElement, Props>(
   ({ products }: Props, ref): JSX.Element | null => {
     return (
       <React.Fragment>
@@ -16,14 +16,16 @@ const Grid03 = React.forwardRef<HTMLDivElement, Props>(
               products.map((p: any) => {
                 return (
                   // eslint-disable-next-line react/jsx-key
-                  <div className={styles.card} key={p.id}>
+                  <div className={styles.card} id={p.id}>
                     <div className={styles.top}>
-                      <Image
-                        src="/image/products/loading.jpg"
-                        alt="sp"
-                        width={188}
-                        height={188}
-                      />
+                      <Link href={`/products/${p.id}`}>
+                        <Image
+                          src="/image/products/loading.jpg"
+                          alt="sp"
+                          width={188}
+                          height={188}
+                        />
+                      </Link>
                     </div>
                     <div className={styles.bottom}>
                       <span> {p.name} </span>
@@ -36,7 +38,6 @@ const Grid03 = React.forwardRef<HTMLDivElement, Props>(
                       <div className={styles["red-text"]}>
                         <b>đ 80000 </b>
                       </div>
-                      <div> Đà Nẵng</div>
                     </div>
                   </div>
                 );
@@ -48,5 +49,5 @@ const Grid03 = React.forwardRef<HTMLDivElement, Props>(
   }
 );
 
-Grid03.displayName = "Grid03";
-export default Grid03;
+ListProducts.displayName = "ListProducts";
+export default ListProducts;

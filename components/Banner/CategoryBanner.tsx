@@ -14,20 +14,21 @@ export default function CategoryBanner() {
     <React.Fragment>
       <div className="container">
         <div className="pt-3 text-center">
-          <Swiper
-            loop={true}
-            modules={[Autoplay, Pagination]}
-            navigation
-            pagination={{ clickable: true }}
-            autoplay={{ delay: 2000, disableOnInteraction: false }}
-            spaceBetween={30}
-            // slidesPerView={1}
-            grabCursor
-          >
-            {slides.map((item) => {
-              return (
-                <SwiperSlide key={item.id}>
-                  <div className="d-block d-xs-block d-sm-block d-md-block d-lg-none">
+          <div>
+            <Swiper
+              // loop={true}
+              modules={[Autoplay, Pagination]}
+              navigation
+              pagination={{ clickable: true }}
+              autoplay={{ delay: 1500, disableOnInteraction: false }}
+              spaceBetween={30}
+              slidesPerView={2}
+              grabCursor
+            >
+              {slides.map((item) => {
+                return (
+                  <SwiperSlide key={item.id}>
+                    {/* <div className="d-block d-xs-block d-sm-block d-md-block d-lg-none">
                     <Image
                       priority
                       src={item.imagePath}
@@ -36,27 +37,29 @@ export default function CategoryBanner() {
                       height={500}
                       alt="image"
                     />
-                  </div>
-
-                  <div className="d-none d-lg-block d-xl-block">
-                    <Image
-                      priority
-                      src={item.imagePath}
-                      style={{
-                        width: "84%",
-                        height: "100%",
-                        objectFit: "cover",
-                      }}
-                      sizes="100vw"
-                      width={500}
-                      height={500}
-                      alt="image"
-                    />
-                  </div>
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+                  </div> */}
+                    <div style={{ display: "flex" }}>
+                      <div className="d-none d-lg-block d-xl-block">
+                        <Image
+                          priority
+                          src={item.imagePath}
+                          style={{
+                            width: "84%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
+                          sizes="100vw"
+                          width={500}
+                          height={500}
+                          alt="image"
+                        />
+                      </div>{" "}
+                    </div>
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </div>
         </div>
       </div>
     </React.Fragment>

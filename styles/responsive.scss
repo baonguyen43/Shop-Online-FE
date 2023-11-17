@@ -1,0 +1,36 @@
+$media: screen;
+$feature_min: min-width;
+$feature_max: max-width;
+$value_one: 576px;
+$value_two: 767px;
+$value_three: 768px;
+$value_four: 991px;
+$value_five: 992px;
+$value_six: 1199px;
+$value_seven: 1200px;
+$value_eight: 1355px;
+$value_nine: 1550px;
+
+@media only #{$media} and ($feature_max : $value_one) {
+
+}
+
+/* Max width 767px */
+@media only #{$media} and ($feature_max : $value_two){
+
+}
+
+/* Min width 576px Max width 767px */
+@media only #{$media} and ($feature_min : $value_one) and ($feature_max : $value_two){
+
+}
+
+/* Min width 768px Max width 991px */
+@media only #{$media} and ($feature_min : $value_three) and ($feature_max : $value_four){
+
+}
+
+// max width : 991px
+@media only screen and (max-width: 991px){
+
+}

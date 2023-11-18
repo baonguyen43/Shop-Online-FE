@@ -1,9 +1,7 @@
-import Image from "next/image";
-import styles from "../../styles/Banner.module.css";
 const HomeBanner = () => {
   return (
     <>
-      <div className={styles.body}>
+      <div className="d-flex justify-content-center">
         <div>
           <img
             sizes="100vw"

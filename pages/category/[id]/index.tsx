@@ -16,7 +16,7 @@ export default Index;
 export async function getStaticProps({ params }: any) {
   const { id } = params;
   try {
-    const res = await axiosClient.get(`/products/category/${id}`);
+    const res = await axiosClient.get(`/products/getProductByCateId/${id}`);
     const data = await res.data;
 
     return {

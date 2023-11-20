@@ -14,12 +14,13 @@ const TopDetailCategory = React.forwardRef<HTMLDivElement, Props>(
           <div className={styles.box}>
             {products &&
               products.map((p: any) => {
+                const imagePath = p.imagePath || "/image/products/loading.jpg";
                 return (
                   // eslint-disable-next-line react/jsx-key
                   <div className={styles.card} key={p.id}>
                     <div className={styles.top}>
                       <Image
-                        src="/image/products/loading.jpg"
+                        src={p.imagePath}
                         alt="sp"
                         width={188}
                         height={188}

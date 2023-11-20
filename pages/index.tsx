@@ -12,6 +12,7 @@ type Props = {
   products: any[];
 };
 export default function Home({ category, products }: Props) {
+  // console.log("products :>> ", products);
   // const [products, setProducts] = useState([]);
   // // Call API
 
@@ -32,7 +33,7 @@ export default function Home({ category, products }: Props) {
     <React.Fragment>
       <div>
         <HomeBanner />
-        <TopCategories imageSrc="/image/icon/tele.png" categories={category} />
+        <TopCategories categories={category} />
         <ListProducts products={products} />
       </div>
     </React.Fragment>

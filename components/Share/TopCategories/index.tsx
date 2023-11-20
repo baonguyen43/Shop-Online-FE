@@ -3,12 +3,11 @@ import Link from "next/link";
 import React from "react";
 
 type Props = {
-  imageSrc: string;
   desc?: string;
   categories?: any;
 };
 const TopCategories = React.forwardRef<HTMLDivElement, Props>(
-  ({ imageSrc, categories }: Props, ref): JSX.Element | null => {
+  ({ categories }: Props, ref): JSX.Element | null => {
     return (
       <React.Fragment>
         <div className="features pt-70">
@@ -25,7 +24,7 @@ const TopCategories = React.forwardRef<HTMLDivElement, Props>(
                             <Image
                               width={50}
                               height={50}
-                              src={imageSrc}
+                              src={c.iconPath}
                               alt={`${c.name}`}
                             />
                           </Link>

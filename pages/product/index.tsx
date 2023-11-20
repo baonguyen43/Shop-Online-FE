@@ -6,6 +6,7 @@ import axiosClient from "@/#@/libraries/axiosClient";
 import Link from "next/link";
 import HomeBanner from "@/#@/components/Banner/HomeBanner";
 import DetailProduct from "@/#@/components/Share/DetailProduct";
+import ListProducts from "@/#@/components/Share/ListProducts";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -30,7 +31,13 @@ function Index() {
 
   return (
     <React.Fragment>
-      <DetailProduct />
+      {/* <DetailProduct /> */}
+      <React.Fragment>
+        <div>
+          {/* <ListProducts products={products} /> */}
+          {/* <DetailProduct /> */}
+        </div>
+      </React.Fragment>
     </React.Fragment>
   );
 }

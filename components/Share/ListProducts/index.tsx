@@ -14,13 +14,14 @@ const ListProducts = React.forwardRef<HTMLDivElement, Props>(
           <div className={styles.box}>
             {products &&
               products.map((p: any) => {
+                const imagePath = p.imagePath || "/image/products/loading.jpg";
                 return (
                   // eslint-disable-next-line react/jsx-key
                   <div className={styles.card} id={p.id}>
                     <div className={styles.top}>
-                      <Link href={`/products/${p.id}`}>
+                      <Link href={`/product/${p.id}`}>
                         <Image
-                          src="/image/products/loading.jpg"
+                          src={imagePath}
                           alt="sp"
                           width={188}
                           height={188}
@@ -28,16 +29,18 @@ const ListProducts = React.forwardRef<HTMLDivElement, Props>(
                       </Link>
                     </div>
                     <div className={styles.bottom}>
-                      <span> {p.name} </span>
-                      <div>
-                        <del> đ {p.price} </del>
-                      </div>
-                      <div className={styles["yellow-box"]}>
-                        - {p.discount} %
-                      </div>
-                      <div className={styles["red-text"]}>
-                        <b>đ 80000 </b>
-                      </div>
+                      <Link href={`/product/${p.id}`}>
+                        <span> {p.name} </span>
+                        <div>
+                          <del> đ {p.price} </del>
+                        </div>
+                        <div className={styles["yellow-box"]}>
+                          - {p.discount} %
+                        </div>
+                        <div className={styles["red-text"]}>
+                          <b>đ 80000 </b>
+                        </div>
+                      </Link>
                     </div>
                   </div>
                 );

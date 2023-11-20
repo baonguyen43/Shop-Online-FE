@@ -7,7 +7,7 @@ const Category = ({ category }: any): JSX.Element | null => {
 
   return (
     <React.Fragment>
-      <TopCategories imageSrc="/image/icon/tele.png" categories={category} />
+      <TopCategories categories={category} />
     </React.Fragment>
   );
 };

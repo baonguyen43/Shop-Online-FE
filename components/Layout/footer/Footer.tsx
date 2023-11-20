@@ -40,16 +40,16 @@ const Footer = () => {
           </FooterList>
 
           <FooterList>
-            <h5>VỀ RShop</h5>
+            <h5>VỀ SHOP ONLINE</h5>
             <p className="mb-2">
-              Ra mắt năm 2023, nền tảng thương mại RShop được xây dựng nhằm cung
+              Ra mắt năm 2023, nền tảng thương mại Shop được xây dựng nhằm cung
               cấp cho người dùng những trải nghiệm dễ dàng, an toàn và nhanh
               chóng khi mua sắm trực tuyến. Niềm tin này truyền cảm hứng và thúc
-              đẩy chúng tôi mỗi ngày tại RShop.
+              đẩy chúng tôi mỗi ngày tại Shop.
             </p>
             <p>
               <AiOutlineCopyrightCircle size={14} />
-              2023, R-Shop | All rows reserved.
+              2023, Shop online | All rows reserved.
             </p>
           </FooterList>
 

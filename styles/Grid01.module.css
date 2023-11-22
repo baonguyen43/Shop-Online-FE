@@ -62,8 +62,8 @@
     padding: 1rem;
     box-sizing: border-box;
     cursor: pointer;
-
-
+  transition: .5s;
+  background-color: cadetblue;
   }
   /* .card:first-child {
     order: -1;

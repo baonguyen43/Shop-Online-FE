@@ -3,65 +3,41 @@ import Image from "next/image";
 import { Autoplay, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const slides = [
-  { id: 1, imagePath: "/image/banner/bannerDM00.jpg" },
-  { id: 2, imagePath: "/image/banner/bannerDM01.jpg" },
-  { id: 3, imagePath: "/image/banner/bannerDM00.jpg" },
-  { id: 4, imagePath: "/image/banner/bannerDM01.jpg" },
-];
-export default function CategoryBanner() {
+// type Props = (
+//   slides : [
+//     { id: 1, imagePath: "/image/banner/HomeBanner01.png" },
+//     { id: 2, imagePath: "/image/banner/HomeBanner02.png" },
+//   ]
+// )
+
+const Banner = (): JSX.Element | null => {
+  const slides = [
+    { id: 1, imagePath: "/image/banner/HomeBanner01.png" },
+    { id: 2, imagePath: "/image/banner/HomeBanner02.png" },
+  ];
   return (
     <React.Fragment>
       <div className="container">
         <div className="pt-3 text-center">
-          <div>
+          <div className="pt-3 text-center">
             <Swiper
-              // loop={true}
-              modules={[Autoplay, Pagination]}
+              loop={true}
+              modules={[Autoplay]}
               navigation
-              pagination={{ clickable: true }}
-              autoplay={{ delay: 1500, disableOnInteraction: false }}
-              spaceBetween={30}
-              slidesPerView={2}
+              autoplay={{ delay: 2000, disableOnInteraction: false }}
+              // spaceBetween={30}
+              // slidesPerView={5}
               grabCursor
             >
-              {slides.map((item) => {
-                return (
-                  <SwiperSlide key={item.id}>
-                    {/* <div className="d-block d-xs-block d-sm-block d-md-block d-lg-none">
-                    <Image
-                      priority
-                      src={item.imagePath}
-                      sizes="(max-width:1230px) 100vw,33vw"
-                      width={500}
-                      height={500}
-                      alt="image"
-                    />
-                  </div> */}
-                    <div style={{ display: "flex" }}>
-                      <div className="d-none d-lg-block d-xl-block">
-                        <Image
-                          priority
-                          src={item.imagePath}
-                          style={{
-                            width: "84%",
-                            height: "100%",
-                            objectFit: "cover",
-                          }}
-                          sizes="100vw"
-                          width={500}
-                          height={500}
-                          alt="image"
-                        />
-                      </div>{" "}
-                    </div>
-                  </SwiperSlide>
-                );
-              })}
+              <SwiperSlide>vip1</SwiperSlide>
+              <SwiperSlide>vip1</SwiperSlide>
+              <SwiperSlide>vip1</SwiperSlide>
+              <SwiperSlide>vip1</SwiperSlide>
             </Swiper>
           </div>
         </div>
       </div>
     </React.Fragment>
   );
-}
+};
+export default Banner;

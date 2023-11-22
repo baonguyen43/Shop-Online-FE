@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import styles from "../../../styles/Grid01.module.css";
 import Image from "next/image";
 
 type Props = {
@@ -8,19 +7,31 @@ type Props = {
 };
 const ListProducts = React.forwardRef<HTMLDivElement, Props>(
   ({ products }: Props, ref): JSX.Element | null => {
+    const formatPrice = (price: number) => {
+      //tạo dấu phẩy hàng nghìn cho Price
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
+
     return (
       <React.Fragment>
-        <div className={styles.grid}>
-          <div className={styles.box}>
+        <div className="grid">
+          <div className="box">
             {products &&
               products.map((p: any) => {
                 const imagePath = p.imagePath || "/image/products/loading.jpg";
+                const discountPrice = p.price - (p.price * p.discount) / 100;
+                const formatTotalPrice = formatPrice(discountPrice);
+
                 return (
-                  // eslint-disable-next-line react/jsx-key
-                  <div className={styles.card} id={p.id}>
-                    <div className={styles.top}>
+                  <div className="card" key={p.id}>
+                    <div className="top">
                       <Link href={`/product/${p.id}`}>
                         <Image
+                          style={{
+                            width: "100%",
+                            height: "100%",
+                            objectFit: "cover",
+                          }}
                           src={imagePath}
                           alt="sp"
                           width={188}
@@ -28,19 +39,18 @@ const ListProducts = React.forwardRef<HTMLDivElement, Props>(
                         />
                       </Link>
                     </div>
-                    <div className={styles.bottom}>
+                    <div className="bottom">
                       <Link href={`/product/${p.id}`}>
                         <span> {p.name} </span>
-                        <div>
-                          <del> đ {p.price} </del>
-                        </div>
-                        <div className={styles["yellow-box"]}>
-                          - {p.discount} %
-                        </div>
-                        <div className={styles["red-text"]}>
-                          <b>đ 80000 </b>
-                        </div>
                       </Link>
+
+                      <div>
+                        <del> {formatPrice(p.price)}₫ </del>
+                      </div>
+                      <div className="yellow-box">- {p.discount} %</div>
+                      <div className="red-text">
+                        <b> {formatTotalPrice} ₫</b>
+                      </div>
                     </div>
                   </div>
                 );

@@ -7,6 +7,8 @@ import Link from "next/link";
 import HomeBanner from "@/#@/components/Banner/HomeBanner";
 import DetailProduct from "@/#@/components/Share/DetailProduct";
 import ListProducts from "@/#@/components/Share/ListProducts";
+import Grid01 from "@/#@/components/Share/Grid/Grid01";
+import SectionTitle from "@/#@/components/Share/SectionTitle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -36,6 +38,16 @@ function Index() {
         <div>
           {/* <ListProducts products={products} /> */}
           {/* <DetailProduct /> */}
+          <Grid01
+            sectionTitle={
+              <SectionTitle
+                subTitle="hello"
+                title="Sale Off"
+                className=""
+                desc="12.12 sale off toàn bộ sản phẩm "
+              />
+            }
+          />
         </div>
       </React.Fragment>
     </React.Fragment>

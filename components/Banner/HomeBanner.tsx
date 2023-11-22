@@ -13,34 +13,10 @@ const HomeBanner = () => {
               display: "block",
               objectFit: "cover",
             }}
-            src="/image/banner/banner.jpg"
+            src="/image/banner/TestBanner03.png"
             alt="banner"
           />
         </div>
-        {/* <div>
-          <div>
-            <Image
-              priority
-              sizes="100vw"
-              width={400}
-              height={198}
-              style={{ height: "100%", display: "auto" }}
-              src="/image/banner/banner1.png"
-              alt="banner"
-            />
-          </div>
-          <div>
-            <Image
-              priority
-              sizes="100vw"
-              width={400}
-              height={198}
-              style={{ display: "auto", height: "100%" }}
-              src="/image/banner/banner1.png"
-              alt="banner"
-            />
-          </div>
-        </div> */}
       </div>
     </>
   );

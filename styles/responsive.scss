@@ -11,6 +11,9 @@ $value_seven: 1200px;
 $value_eight: 1355px;
 $value_nine: 1550px;
 
+@import '/styles/styles.scss'; 
+
+ 
 @media only #{$media} and ($feature_max : $value_one) {
 
 }
@@ -22,7 +25,9 @@ $value_nine: 1550px;
 
 /* Min width 576px Max width 767px */
 @media only #{$media} and ($feature_min : $value_one) and ($feature_max : $value_two){
-
+    .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
 }
 
 /* Min width 768px Max width 991px */
@@ -33,4 +38,16 @@ $value_nine: 1550px;
 // max width : 991px
 @media only screen and (max-width: 991px){
 
+}
+
+@media only #{$media} and ($feature_min : $value_five){
+    .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+}
+
+@media only #{$media} and ($feature_min : $value_seven){
+    .grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
 }

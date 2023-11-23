@@ -4,7 +4,7 @@ import React from "react";
 
 const ProductDetail = ({ product }: any): JSX.Element | null => {
   // const router = useRouter();
-  console.log("productDetail :>> ", product);
+  // console.log("productDetail :>> ", product);
   return (
     <React.Fragment>
       <DetailProduct productDetail={product} />

@@ -22,6 +22,7 @@ const TopCategories = React.forwardRef<HTMLDivElement, Props>(
                         <div className="feature-image">
                           <Link href={`/category/${c.id}`} legacyBehavior>
                             <Image
+                              priority
                               width={50}
                               height={50}
                               src={c.iconPath}

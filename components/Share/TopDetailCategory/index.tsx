@@ -26,6 +26,7 @@ const TopDetailCategory = React.forwardRef<HTMLDivElement, Props>(
                     <div className="top">
                       <Link href={`/product/${p.id}`}>
                         <Image
+                          priority
                           style={{
                             width: "100%",
                             height: "100%",

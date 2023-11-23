@@ -13,7 +13,7 @@ const HomeBanner = () => {
               display: "block",
               objectFit: "cover",
             }}
-            src="/image/banner/TestBanner03.png"
+            src="/image/banner/HomeBanner02.png"
             alt="banner"
           />
         </div>

@@ -1,10 +1,11 @@
 import axiosClient from "@/#@/libraries/axiosClient";
 import { Inter } from "next/font/google";
-import React from "react";
+import React, { useState } from "react";
 import HomeBanner from "../components/Banner/HomeBanner";
+import SaleProducts from "../components/Share/SaleProducts";
 import ListProducts from "../components/Share/ListProducts";
-import TopCategories from "../components/Share/TopCategories";
 import SectionTitle from "../components/Share/SectionTitle";
+import TopCategories from "../components/Share/TopCategories";
 import Banner from "../components/Banner/CategoryBanner";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -12,12 +13,57 @@ const inter = Inter({ subsets: ["latin"] });
 type Props = {
   category: any[];
   products: any[];
+  shuffledProducts: any[];
+  discountProducts: any[];
 };
-export default function Home({ category, products }: Props) {
-  // console.log("category :>> ", category);
-  // const [products, setProducts] = useState([]);
 
-  // Hàm shuffle để trộn mảng sản phẩm
+export default function Home({ category, products, discountProducts }: Props) {
+  // console.log("discountProducts :>> ", discountProducts);
+
+  //config Products display
+  const [displayedProducts, setDisplayedProducts] = useState(
+    products.slice(0, 20)
+  );
+  const [loadMoreCount, setLoadMoreCount] = useState(20);
+  const handleLoadMore = () => {
+    setDisplayedProducts(
+      products.slice(0, displayedProducts.length + loadMoreCount)
+    );
+  };
+  return (
+    <React.Fragment>
+      <div>
+        <Banner />
+        {/* <HomeBanner /> */}
+
+        {/* Category */}
+        <TopCategories categories={category} />
+
+        <SaleProducts
+          bgClassName="bg-white-color"
+          disProduct={discountProducts}
+          sectionTitle={<SectionTitle subTitle="" title="SALE SẬP SÀN " />}
+        />
+
+        <ListProducts
+          bgClassName="bg-snow-color"
+          products={displayedProducts}
+          sectionTitle={
+            <SectionTitle subTitle="" title="SẢN PHẨM DÀNH RIÊNG CHO BẠN" />
+          }
+        />
+        <div className="load-more">
+          <button onClick={handleLoadMore}>Tải thêm</button>
+        </div>
+      </div>
+    </React.Fragment>
+  );
+}
+
+export async function getStaticProps() {
+  const categoryRes = await axiosClient.get("/categories");
+  const category = categoryRes.data;
+
   const shuffle = (array: any) => {
     let currentIndex = array.length;
     let temporaryValue, randomIndex;
@@ -33,30 +79,20 @@ export default function Home({ category, products }: Props) {
 
     return array;
   };
-  const shuffledProducts = shuffle(products);
-
-  return (
-    <React.Fragment>
-      <div>
-        <Banner />
-        <TopCategories categories={category} />
-        <SectionTitle subTitle="" title="SẢN PHẨM DÀNH RIÊNG CHO BẠN" />
-        <ListProducts products={shuffledProducts} />
-      </div>
-    </React.Fragment>
-  );
-}
-
-export async function getStaticProps() {
-  const categoryRes = await axiosClient.get("/categories");
-  const category = categoryRes.data;
 
   const productsRes = await axiosClient.get("/products");
   const products = productsRes.data;
+  const shuffledProducts = shuffle(products);
+
+  const res = await axiosClient.get("/super-sale");
+  const discountProducts = res.data;
   return {
     props: {
       category,
       products,
+      shuffledProducts,
+      discountProducts,
     },
+    revalidate: 60,
   };
 }

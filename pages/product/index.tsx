@@ -1,14 +1,8 @@
-import Head from "next/head";
-import Image from "next/image";
+import Grid01 from "@/#@/components/Share/SaleProducts";
+import SectionTitle from "@/#@/components/Share/SectionTitle";
+import axiosClient from "@/#@/libraries/axiosClient";
 import { Inter } from "next/font/google";
 import React, { useCallback, useEffect, useState } from "react";
-import axiosClient from "@/#@/libraries/axiosClient";
-import Link from "next/link";
-import HomeBanner from "@/#@/components/Banner/HomeBanner";
-import DetailProduct from "@/#@/components/Share/DetailProduct";
-import ListProducts from "@/#@/components/Share/ListProducts";
-import Grid01 from "@/#@/components/Share/Grid/Grid01";
-import SectionTitle from "@/#@/components/Share/SectionTitle";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +13,7 @@ function Index() {
   const getProducts = useCallback(async () => {
     try {
       const res = await axiosClient.get("/products");
-      console.log("res.data", res.data);
+      // console.log("res.data", res.data);
       setProducts(res.data);
     } catch (error) {
       console.log(error);
@@ -34,11 +28,9 @@ function Index() {
   return (
     <React.Fragment>
       {/* <DetailProduct /> */}
-      <React.Fragment>
-        <div>
-          {/* <ListProducts products={products} /> */}
-          {/* <DetailProduct /> */}
-          <Grid01
+      {/* <ListProducts products={products} /> */}
+      {/* <DetailProduct /> */}
+      {/* <Grid01
             sectionTitle={
               <SectionTitle
                 subTitle="hello"
@@ -47,9 +39,7 @@ function Index() {
                 desc="12.12 sale off toàn bộ sản phẩm "
               />
             }
-          />
-        </div>
-      </React.Fragment>
+          /> */}
     </React.Fragment>
   );
 }

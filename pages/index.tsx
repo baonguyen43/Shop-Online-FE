@@ -1,12 +1,11 @@
 import axiosClient from "@/#@/libraries/axiosClient";
 import { Inter } from "next/font/google";
 import React, { useState } from "react";
-import HomeBanner from "../components/Banner/HomeBanner";
-import SaleProducts from "../components/Share/SaleProducts";
+import Banner from "../components/Banner/Banner";
 import ListProducts from "../components/Share/ListProducts";
+import SaleProducts from "../components/Share/SaleProducts";
 import SectionTitle from "../components/Share/SectionTitle";
 import TopCategories from "../components/Share/TopCategories";
-import Banner from "../components/Banner/CategoryBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -32,29 +31,26 @@ export default function Home({ category, products, discountProducts }: Props) {
   };
   return (
     <React.Fragment>
-      <div>
-        <Banner />
-        {/* <HomeBanner /> */}
+      <Banner />
 
-        {/* Category */}
-        <TopCategories categories={category} />
+      {/* Category */}
+      <TopCategories categories={category} />
 
-        <SaleProducts
-          bgClassName="bg-white-color"
-          disProduct={discountProducts}
-          sectionTitle={<SectionTitle subTitle="" title="SALE SẬP SÀN " />}
-        />
+      <SaleProducts
+        bgClassName="bg-white-color"
+        disProduct={discountProducts}
+        sectionTitle={<SectionTitle subTitle="" title="SALE SẬP SÀN " />}
+      />
 
-        <ListProducts
-          bgClassName="bg-snow-color"
-          products={displayedProducts}
-          sectionTitle={
-            <SectionTitle subTitle="" title="SẢN PHẨM DÀNH RIÊNG CHO BẠN" />
-          }
-        />
-        <div className="load-more">
-          <button onClick={handleLoadMore}>Tải thêm</button>
-        </div>
+      <ListProducts
+        bgClassName="bg-snow-color"
+        products={displayedProducts}
+        sectionTitle={
+          <SectionTitle subTitle="" title="SẢN PHẨM DÀNH RIÊNG CHO BẠN" />
+        }
+      />
+      <div className="load-more">
+        <button onClick={handleLoadMore}>Tải thêm</button>
       </div>
     </React.Fragment>
   );

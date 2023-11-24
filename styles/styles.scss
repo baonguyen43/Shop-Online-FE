@@ -6,11 +6,16 @@ $bg01-color: darkslategrey;
 $bg02-color: antiquewhite;
 $bg03-color: black;
 $bg04-color: snow;
+$bg05-color: #6F6D6F;
 
 // @import '../../node_modules//bootstrap/scss/bootstrap.scss';
 // @import '../../node_modules/material-icons/iconfont/material-icons.css';
 // @import '../../node_modules/bootstrap-icons/font/bootstrap-icons.css'
 
+.bg-main-color{
+background-color: $bg05-color;
+
+}
 .bg-grey-color {
   background-color: $bg01-color;
 }
@@ -105,7 +110,7 @@ $bg04-color: snow;
       width: 85px;
       height: 85px;
       line-height: 84px;
-        border-radius: 0.25rem;
+        border-radius: 20px;
       margin-bottom: 15px;
       background-color: $secondary-color;
       transition: 0.5s;
@@ -203,6 +208,11 @@ $bg04-color: snow;
   font-weight: 700;
   font-size: 16px;
   padding: 10px 32px 11px 29px;
+
+}
+.default-btn:hover {
+  color: wheat
+
 }
 
 //CARD DETAIL PRODUCT
@@ -212,12 +222,12 @@ $bg04-color: snow;
   padding-top: 10px;
   padding-bottom: 10px;
   font-size: x-large;
+  background-color: $secondary-color;
   .container {
     margin-right: auto;
     margin-left: auto;
     width: 1200px;
     display: flex;
-    background-color: #c7c7c7;
     text-align: center;
   }
   .left-column {
@@ -294,9 +304,14 @@ $bg04-color: snow;
       max-width: 200px;
         // padding: 2px 2px 2px 7px;
       background-color: #c7c7c7;
+      border-radius: 20px;
       .top{
         padding: 2px;
         border-radius: 0.25rem;
+        img{
+      border-radius: 20px;
+
+        }
       }
       .bottom{
         display: flex;
@@ -342,12 +357,12 @@ $bg04-color: snow;
   
   // image
   .box-image{
-    border-radius: 28px 28px 0 0;
+    border-radius: 20px 20px 0 0;
     position: relative;
     z-index: 1;
     border: 1px solid #c7c7c7;
     img{
-      border-radius: 28px 28px 0 0;
+      border-radius: 20px 20px 0 0;;
       transition: .5s;
     }
   
@@ -356,7 +371,7 @@ $bg04-color: snow;
   .box-content {
     margin-top: -12px;
     background-color: $secondary-color;
-    border-radius: 0 0 28px 28px;
+    border-radius: 0 0 20px 20px;
     transition: .5s;
     min-height: auto;
     padding: 30px;

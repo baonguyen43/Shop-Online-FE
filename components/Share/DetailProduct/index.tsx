@@ -1,13 +1,17 @@
+import { useCartStore } from "@/#@/hook/useCartStore";
 import { Form, InputNumber } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {
   productDetail?: any;
 };
 const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
   ({ productDetail }: Props, ref): JSX.Element | null => {
+    // const { addItem } = useCartStore();
+    // const [quantity, setQuantity] = useState(1);
+
     const formatPrice = (price: number) => {
       //tạo dấu phẩy hàng nghìn cho Price
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -27,6 +31,7 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
               <div className="left-column">
                 {" "}
                 <Image
+                  priority
                   style={{ borderRadius: "10px" }}
                   src={productDetail.imagePath}
                   alt="sp"
@@ -89,19 +94,24 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
                     {/* BUTTON */}
                     <div className="section">
                       <div>
-                        {" "}
-                        <Link legacyBehavior href="/">
-                          <a className="default-btn gap-2">
-                            <i className="flaticon-history"></i> Thêm vào giỏ
-                            hàng
-                          </a>
-                        </Link>
+                        <div
+                          className="default-btn gap-2"
+                          // onClick={() => {
+                          //   addItem({
+                          //     id: productDetail.id,
+                          //     name: productDetail.name,
+                          //     price: productDetail.price,
+                          //     quantity: 1,
+                          //     thumb: productDetail.imagePath,
+                          //   });
+                          // }}
+                        >
+                          Thêm vào giỏ hàng
+                        </div>
                       </div>
                       <div style={{ paddingLeft: "20px" }}>
-                        <Link legacyBehavior href="/">
-                          <a className="default-btn">
-                            <i className="flaticon-home"></i> Mua ngay
-                          </a>
+                        <Link legacyBehavior href="/cart">
+                          <div className="default-btn">Mua ngay</div>
                         </Link>
                       </div>
                     </div>

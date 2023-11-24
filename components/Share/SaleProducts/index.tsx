@@ -28,7 +28,7 @@ const SaleProducts = React.forwardRef<HTMLDivElement, Props>(
                   <div className="col-lg-4 col-md-6" key={d.id}>
                     <div className="single-box">
                       <div className="box-image">
-                        <a className="d-block">
+                        <div className="d-block">
                           <Link href={`/product/${d.id}`}>
                             <Image
                               priority
@@ -44,13 +44,13 @@ const SaleProducts = React.forwardRef<HTMLDivElement, Props>(
                               alt="image"
                             />
                           </Link>
-                        </a>
+                        </div>
                       </div>
 
                       <div className="box-content">
                         <h3>
                           <Link legacyBehavior href={`/product/${d.id}`}>
-                            <a>{d.name}</a>
+                            {d.name}
                           </Link>
                         </h3>
                         <p>{d.discount}%</p>

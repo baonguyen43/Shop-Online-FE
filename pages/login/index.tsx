@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import { Button, Form, Input } from "antd";
 import axiosClient from "@/#@/libraries/axiosClient";
 
 const LoginPage = () => {
-  //   const navigate = useNavigate();
-  const token = window.localStorage.getItem("TOKEN");
+  const router = useRouter();
+  const [token, setToken] = useState("");
 
   const onLogin = async (values: any) => {
     try {
@@ -14,13 +15,13 @@ const LoginPage = () => {
 
       const { token, refreshToken } = res.data;
 
-      window.localStorage.setItem("TOKEN", token);
-      window.localStorage.setItem("REFRESH_TOKEN", refreshToken);
+      localStorage.setItem("TOKEN", token);
+      localStorage.setItem("REFRESH_TOKEN", refreshToken);
 
       axiosClient.defaults.headers.Authorization = `Bearer ${token}`;
 
       if (token) {
-        // navigate(LOCATIONS.PRODUCTS_PAGE);
+        setToken(token);
       }
     } catch (err) {
       console.error("««««« err »»»»»", err);
@@ -32,10 +33,17 @@ const LoginPage = () => {
   };
 
   useEffect(() => {
-    if (token) {
-      //   navigate(LOCATIONS.PRODUCTS_PAGE);
+    const storedToken = localStorage.getItem("TOKEN");
+    if (storedToken) {
+      setToken(storedToken);
     }
-  }, [token]);
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      router.push("/");
+    }
+  }, [router, token]);
 
   return (
     <div className="d-flex justify-content-center mt-5">
@@ -97,4 +105,5 @@ const LoginPage = () => {
     </div>
   );
 };
+
 export default LoginPage;

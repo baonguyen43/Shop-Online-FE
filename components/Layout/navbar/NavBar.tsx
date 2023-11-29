@@ -45,12 +45,9 @@ const NavBar = () => {
             </div>
           </div>
           <div className={styles.right}>
-            <div>
-              <Link href="/"> Cart</Link>
-            </div>
-            <div>
-              <Link href="/"> UserMenu</Link>
-            </div>
+            <Link href="/"> Cart</Link>
+
+            <Link href="/"> UserMenu</Link>
           </div>
         </div>
       </div>

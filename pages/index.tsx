@@ -1,13 +1,12 @@
 import axiosClient from "@/#@/libraries/axiosClient";
-import { Inter } from "next/font/google";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Banner from "../components/Banner/Banner";
 import ListProducts from "../components/Share/ListProducts";
 import SaleProducts from "../components/Share/SaleProducts";
 import SectionTitle from "../components/Share/SectionTitle";
 import TopCategories from "../components/Share/TopCategories";
-
-const inter = Inter({ subsets: ["latin"] });
+import { useRouter } from "next/router";
+import LoginPage from "./login";
 
 type Props = {
   category: any[];
@@ -29,11 +28,21 @@ export default function Home({ category, products, discountProducts }: Props) {
       products.slice(0, displayedProducts.length + loadMoreCount)
     );
   };
+
+  // const router = useRouter();
+  // const token =
+  //   typeof window !== "undefined" && window.localStorage.getItem("TOKEN");
+  // useEffect(() => {
+  //   if (token) {
+  //     axiosClient.defaults.headers.Authorization = `Bearer ${token}`;
+  //   } else {
+  //     router.push("/login");
+  //   }
+  // }, [router, token]);
+
   return (
     <React.Fragment>
       <Banner />
-
-      {/* Category */}
       <TopCategories categories={category} />
 
       <SaleProducts
@@ -57,9 +66,11 @@ export default function Home({ category, products, discountProducts }: Props) {
 }
 
 export async function getStaticProps() {
+  //get api category
   const categoryRes = await axiosClient.get("/categories");
   const category = categoryRes.data;
 
+  //shuffle products
   const shuffle = (array: any) => {
     let currentIndex = array.length;
     let temporaryValue, randomIndex;
@@ -76,12 +87,15 @@ export async function getStaticProps() {
     return array;
   };
 
+  //get api products
   const productsRes = await axiosClient.get("/products");
   const products = productsRes.data;
   const shuffledProducts = shuffle(products);
 
+  //get api products sale
   const res = await axiosClient.get("/super-sale");
   const discountProducts = res.data;
+
   return {
     props: {
       category,

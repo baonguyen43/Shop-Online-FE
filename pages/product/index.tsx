@@ -7,23 +7,23 @@ import React, { useCallback, useEffect, useState } from "react";
 const inter = Inter({ subsets: ["latin"] });
 
 function Index() {
-  const [products, setProducts] = useState([]);
-  // Call API
+  // const [products, setProducts] = useState([]);
+  // // Call API
 
-  const getProducts = useCallback(async () => {
-    try {
-      const res = await axiosClient.get("/products");
-      // console.log("res.data", res.data);
-      setProducts(res.data);
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  // const getProducts = useCallback(async () => {
+  //   try {
+  //     const res = await axiosClient.get("/products");
+  //     // console.log("res.data", res.data);
+  //     setProducts(res.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    getProducts();
-  }, [getProducts]);
-  console.log("products", products);
+  // useEffect(() => {
+  //   getProducts();
+  // }, [getProducts]);
+  // console.log("products", products);
 
   return (
     <React.Fragment>

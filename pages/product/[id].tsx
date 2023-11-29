@@ -15,7 +15,7 @@ export default ProductDetail;
 
 export async function getStaticProps({ params }: any) {
   const { id } = params;
-
+  console.log("id :>> ", id);
   try {
     //   console.log('««««« req »»»»»', req);
     const res = await axiosClient.get(`/products/${id}`);

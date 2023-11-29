@@ -5,24 +5,33 @@ import axiosClient from "@/#@/libraries/axiosClient";
 
 const LoginPage = () => {
   const router = useRouter();
-  const [token, setToken] = useState("");
+  // const token =
+  //   typeof window !== "undefined" && window.localStorage.getItem("TOKEN");
 
-  const onLogin = async (values: any) => {
+  const onLogin = async (values: { email: string; password: string }) => {
     try {
-      const url = "/auth/login";
+      // const res = await axiosClient.post("/login");
+      // console.log("res :>> ", res);
+      const url = "/login";
 
       const res = await axiosClient.post(url, values);
-
-      const { token, refreshToken } = res.data;
-
-      localStorage.setItem("TOKEN", token);
-      localStorage.setItem("REFRESH_TOKEN", refreshToken);
-
-      axiosClient.defaults.headers.Authorization = `Bearer ${token}`;
-
-      if (token) {
-        setToken(token);
+      if (res) {
+        localStorage.setItem("user", JSON.stringify(res.data.payload));
       }
+      console.log("res :>> ", res);
+
+      // const { token, refreshToken } = res.data;
+
+      // typeof window !== "undefined" &&
+      //   window.localStorage.setItem("TOKEN", token);
+      // typeof window !== "undefined" &&
+      //   window.localStorage.setItem("REFRESH_TOKEN", refreshToken);
+
+      // axiosClient.defaults.headers.Authorization = `Bearer ${token}`;
+
+      // if (token) {
+      //   router.push("/");
+      // }
     } catch (err) {
       console.error("««««« err »»»»»", err);
     }
@@ -32,18 +41,11 @@ const LoginPage = () => {
     console.log("Failed:", errorInfo);
   };
 
-  useEffect(() => {
-    const storedToken = localStorage.getItem("TOKEN");
-    if (storedToken) {
-      setToken(storedToken);
-    }
-  }, []);
-
-  useEffect(() => {
-    if (token) {
-      router.push("/");
-    }
-  }, [router, token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     router.push("/");
+  //   }
+  // }, [router, token]);
 
   return (
     <div className="d-flex justify-content-center mt-5">

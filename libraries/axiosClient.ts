@@ -8,7 +8,7 @@ const axiosClient = axios.create({
 });
 
 // axiosClient.interceptors.request.use((config) => {
-//   const token = window.localStorage.getItem(TOKEN);
+//   const token = localStorage.getItem("TOKEN");
 
 //   if (token) {
 //     config.headers['Authorization'] = `Bearer ${token}`;
@@ -23,11 +23,11 @@ const axiosClient = axios.create({
 //   const { token, refreshToken } = response.data;
 
 //   if (token) {
-//     window.localStorage.setItem(TOKEN, token);
+//    localStorage.setItem("TOKEN", token);
 //   }
 
 //   if (refreshToken) {
-//     window.localStorage.setItem(REFRESH_TOKEN, refreshToken);
+//   localStorage.setItem("REFRESH_TOKEN", refreshToken);
 //   }
 
 //   return response.data;
@@ -42,11 +42,11 @@ const axiosClient = axios.create({
 //     originalConfig.sent = true;
 
 //     try {
-//       const token = window.localStorage.getItem(TOKEN);
-//       const refreshToken = window.localStorage.getItem(REFRESH_TOKEN);
+//       const token = localStorage.getItem("TOKEN");
+//       const refreshToken = localStorage.getItem("REFRESH_TOKEN");
 
 //       if (!token) {
-//         window.location.href = '/login';
+//       location.href = '/login';
 
 //         return Promise.reject(error);
 //       }
@@ -57,7 +57,7 @@ const axiosClient = axios.create({
 //         });
 
 //         const { token } = res.data;
-//         window.localStorage.setItem(TOKEN, token);
+//         localStorage.setItem("TOKEN", token);
 
 //         originalConfig.headers = {
 //           ...originalConfig.headers,

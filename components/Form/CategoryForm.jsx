@@ -21,7 +21,7 @@ function CategoryForm(props) {
 
   return (
     <div style={{textAlign: "center", fontSize: 20, fontWeight:700, marginTop:60}}> 
-    <div> Thêm mới Danh mục</div>
+    <h2> Thêm mới Danh mục</h2>
     <Form
       form={form}
       className=""

@@ -1,6 +1,8 @@
+import React from "react";
+
 const HomeBanner = () => {
   return (
-    <>
+    <React.Fragment>
       <div className="d-flex justify-content-center">
         <div>
           <img
@@ -18,7 +20,7 @@ const HomeBanner = () => {
           />
         </div>
       </div>
-    </>
+    </React.Fragment>
   );
 };
 

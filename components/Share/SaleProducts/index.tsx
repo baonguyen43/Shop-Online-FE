@@ -53,7 +53,7 @@ const SaleProducts = React.forwardRef<HTMLDivElement, Props>(
                             {d.name}
                           </Link>
                         </h3>
-                        <p>{d.discount}%</p>
+                        <p>Giảm {d.discount}%</p>
                         <a>{formatTotalPrice} ₫</a>
                       </div>
                     </div>

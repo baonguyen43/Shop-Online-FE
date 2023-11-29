@@ -1,8 +1,7 @@
-import { useCartStore } from "@/#@/hook/useCartStore";
 import { Form, InputNumber } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React from "react";
 
 type Props = {
   productDetail?: any;
@@ -11,7 +10,7 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
   ({ productDetail }: Props, ref): JSX.Element | null => {
     // const { addItem } = useCartStore();
     // const [quantity, setQuantity] = useState(1);
-
+    const [user, setUser] = React.useState();
     const formatPrice = (price: number) => {
       //tạo dấu phẩy hàng nghìn cho Price
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -21,6 +20,21 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
       (productDetail.price * productDetail.discount) / 100;
 
     const formatTotal = formatPrice(discountedPrice);
+
+    const addToCart = (productDetail: any) => {
+      console.log("productDetail :>> ", productDetail);
+    };
+    React.useEffect(() => {
+      if (typeof window !== "undefined") {
+        // Perform localStorage action
+        const item: string | null = localStorage?.getItem("user");
+        if (item) {
+          const parsedItem = JSON.parse(item);
+          setUser(parsedItem);
+        }
+      }
+    }, []);
+    console.log("user state :>> ", user);
 
     return (
       <React.Fragment>
@@ -54,7 +68,7 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
                             textDecoration: "line-through",
                           }}
                         >
-                          {productDetail.price}₫
+                          {formatPrice(productDetail.price)}₫
                         </span>{" "}
                         <div className="flex items-center">
                           <span
@@ -105,6 +119,7 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
                           //     thumb: productDetail.imagePath,
                           //   });
                           // }}
+                          onClick={() => addToCart(productDetail)}
                         >
                           Thêm vào giỏ hàng
                         </div>

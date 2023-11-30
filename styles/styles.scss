@@ -436,3 +436,105 @@ background-color: $bg05-color;
     background-color: $bg02-color;
   }
 }
+
+
+.cart-details{
+  display: flex;
+    flex-direction: column;
+    color: rgba(0,0,0,.8);
+    padding-top: 20px;
+    .cart-header{
+      display: flex;
+      align-items: center;
+      box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+      border-radius: 0.125rem;
+      overflow: hidden;
+      border-radius: 3px;
+      height: 55px;
+      font-size: 14px;
+      background: #fff;
+      margin-bottom: 12px;
+      color: #888;
+      padding: 0 20px;
+    }
+    .cart-body{
+      box-shadow: 0 1px 1px 0 rgba(0,0,0,.05);
+      border-radius: 0.125rem;
+      overflow: hidden;
+      background: #fff;
+      overflow: visible;
+      .body-top{
+        height: 3.75rem;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(0,0,0,.09);
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    a {
+      text-decoration: none;
+    color: rgba(0,0,0,.87);
+    font-weight: 500;
+    min-width: 50px;
+    display: flex;
+    align-items: center;
+    }
+      }
+      .body-mid{
+        position: relative;
+    padding-bottom: 1px;
+        .mid-container{
+          text-decoration: none;
+          color: rgba(0,0,0,.87);
+          display: block;
+          padding: 0 20px 15px;
+          margin-top: 15px;
+          .mid-cdisplay{
+            display: flex;
+    align-items: center;
+            .mid-product{
+              width: 29.03811%;
+              box-sizing: border-box;
+              position: relative;
+              flex-direction: column;
+              .mid-title{
+                display: flex;
+                flex: 1;
+                flex-direction: column;
+                padding: 5px 20px 0 10px;
+                font-size: 14px;
+              }
+            }
+            .mid-price {
+              display: flex;
+              align-items: center;
+              justify-content: center; 
+              flex-direction: column;
+              width: 15.88022%;
+            }
+            .mid-quantity{
+              display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 15.4265%;
+            }
+            .mid-total-price{
+              .mhcjog, .ofQLuG {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            }
+            .mid-del{
+              width: 12.70417%;
+              text-transform: capitalize;
+              display: flex;
+    align-items: center;
+    justify-content: center;
+            }
+          }
+        }
+      }
+    }
+
+}

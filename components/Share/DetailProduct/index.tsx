@@ -1,32 +1,33 @@
+import axiosClient from "@/#@/libraries/axiosClient";
 import { Form, InputNumber } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {
   productDetail?: any;
 };
 const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
   ({ productDetail }: Props, ref): JSX.Element | null => {
-    // const { addItem } = useCartStore();
-    // const [quantity, setQuantity] = useState(1);
     const [user, setUser] = React.useState();
+
+    const [quantity, setQuantity] = useState<number | null>(null);
+
+    //FORMAT GIÁ
     const formatPrice = (price: number) => {
       //tạo dấu phẩy hàng nghìn cho Price
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     };
     const discountedPrice =
-      productDetail.price -
-      (productDetail.price * productDetail.discount) / 100;
+      productDetail?.price -
+      (productDetail?.price * productDetail?.discount) / 100;
 
+    //Giá sau giảm giá
     const formatTotal = formatPrice(discountedPrice);
 
-    const addToCart = (productDetail: any) => {
-      console.log("productDetail :>> ", productDetail);
-    };
+    // GET CUSTOMERID
     React.useEffect(() => {
       if (typeof window !== "undefined") {
-        // Perform localStorage action
         const item: string | null = localStorage?.getItem("user");
         if (item) {
           const parsedItem = JSON.parse(item);
@@ -34,7 +35,32 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
         }
       }
     }, []);
-    console.log("user state :>> ", user);
+    // console.log("user state :>> ", user);
+
+    const addToCart = (productDetail: any, user: any) => {
+      const customerId = user?.id; // Lấy customerId từ user state
+      const productId = productDetail.id;
+      // console.log("productDetail:>> ", productDetail);
+      console.log("Customer:>> ", user);
+      if (quantity !== null) {
+        // console.log("quantity:>> ", quantity);
+        console.log("customerId:>> ", customerId);
+        console.log("productId:>> ", productId);
+
+        axiosClient
+          .post("/cart", {
+            customerId: customerId,
+            productId: productId,
+            quantity: quantity,
+          })
+          .then((response) => {
+            console.log(response.data);
+          })
+          .catch((error) => {
+            console.error("Lỗi:", error);
+          });
+      }
+    };
 
     return (
       <React.Fragment>
@@ -42,6 +68,7 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
           {productDetail && (
             <div className="container">
               {/* IMAGE */}
+
               <div className="left-column">
                 {" "}
                 <Image
@@ -53,6 +80,7 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
                   height={450}
                 />{" "}
               </div>
+
               {/* CONTENT */}
               <div className="right-column">
                 <div className="right-top">
@@ -94,32 +122,29 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
                       </div>
                     </div>
 
+                    {/* SỐ LƯỢNG */}
                     <div className="section">
                       <span style={{ marginRight: "65px" }}> Số lượng: </span>
                       <span>
                         <Form.Item name="input-number" noStyle>
-                          <InputNumber min={1} max={10} />
+                          <InputNumber
+                            min={1}
+                            max={100}
+                            onChange={(value) => setQuantity(value)}
+                          />
                         </Form.Item>{" "}
                         <i style={{ fontSize: "12px" }}>
                           Số lượng sản phẩm có sẵn {productDetail.stock}
                         </i>{" "}
                       </span>
                     </div>
+
                     {/* BUTTON */}
                     <div className="section">
                       <div>
                         <div
                           className="default-btn gap-2"
-                          // onClick={() => {
-                          //   addItem({
-                          //     id: productDetail.id,
-                          //     name: productDetail.name,
-                          //     price: productDetail.price,
-                          //     quantity: 1,
-                          //     thumb: productDetail.imagePath,
-                          //   });
-                          // }}
-                          onClick={() => addToCart(productDetail)}
+                          onClick={() => addToCart(productDetail, user)}
                         >
                           Thêm vào giỏ hàng
                         </div>

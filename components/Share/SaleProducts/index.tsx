@@ -9,7 +9,10 @@ type Props = {
 };
 
 const SaleProducts = React.forwardRef<HTMLDivElement, Props>(
-  ({ bgClassName, sectionTitle, disProduct }: Props): JSX.Element | null => {
+  (
+    { bgClassName, sectionTitle, disProduct }: Props,
+    _ref
+  ): JSX.Element | null => {
     const formatPrice = (price: number) => {
       //tạo dấu phẩy hàng nghìn cho Price
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

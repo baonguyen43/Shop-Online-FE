@@ -3,7 +3,7 @@ import axiosClient from "@/#@/libraries/axiosClient";
 import React from "react";
 
 const Category = ({ category }: any): JSX.Element | null => {
-  // console.log("res.data", category);
+  console.log("res.data", category);
 
   return (
     <React.Fragment>

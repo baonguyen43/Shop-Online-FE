@@ -18,10 +18,9 @@ const LoginPage = () => {
       if (res) {
         localStorage.setItem("user", JSON.stringify(res.data.payload));
       }
-      console.log("res :>> ", res);
+      // console.log("res :>> ", res);
 
       // const { token, refreshToken } = res.data;
-
       // typeof window !== "undefined" &&
       //   window.localStorage.setItem("TOKEN", token);
       // typeof window !== "undefined" &&

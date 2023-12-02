@@ -7,7 +7,7 @@ type Props = {
   categories?: any;
 };
 const TopCategories = React.forwardRef<HTMLDivElement, Props>(
-  ({ categories }: Props, ref): JSX.Element | null => {
+  ({ categories }: Props, _ref): JSX.Element | null => {
     return (
       <React.Fragment>
         <div className="features pt-70">

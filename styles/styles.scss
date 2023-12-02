@@ -443,6 +443,8 @@ background-color: $bg05-color;
     flex-direction: column;
     color: rgba(0,0,0,.8);
     padding-top: 20px;
+    font-weight: 500;
+    font-size: 18px;
     .cart-header{
       display: flex;
       align-items: center;
@@ -490,33 +492,30 @@ background-color: $bg05-color;
           margin-top: 15px;
           .mid-cdisplay{
             display: flex;
-    align-items: center;
+            justify-content: space-around;
             .mid-product{
-              width: 29.03811%;
               box-sizing: border-box;
               position: relative;
-              flex-direction: column;
-              .mid-title{
                 display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+              .mid-title{
+
                 flex: 1;
                 flex-direction: column;
                 padding: 5px 20px 0 10px;
-                font-size: 14px;
               }
             }
             .mid-price {
               display: flex;
               align-items: center;
-              justify-content: center; 
-              flex-direction: column;
-              width: 15.88022%;
             }
             .mid-quantity{
               display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    width: 15.4265%;
+              align-items: center;
+    // justify-content: center;
+    // flex-direction: column;
+    // width: 15.4265%;
             }
             .mid-total-price{
               .mhcjog, .ofQLuG {
@@ -536,5 +535,14 @@ background-color: $bg05-color;
         }
       }
     }
-
+    .cart-footer{
+      padding: 12px 0;
+    grid-column-start: 1;
+    grid-column-end: 4;
+    -ms-grid-column-span: 3;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    width: 100%;
+    }
 }

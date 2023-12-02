@@ -1,34 +1,49 @@
 import Cart from "@/#@/components/Share/Cart";
-import TopCategories from "@/#@/components/Share/TopCategories";
 import axiosClient from "@/#@/libraries/axiosClient";
-import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import React, { useCallback, useEffect, useState } from "react";
 
-const Index = ({}: any): JSX.Element | null => {
-  // console.log("res.data", category);
+const Index = (): JSX.Element | null => {
+  // client-side rendering
+  const [cartData, setCartData] = useState(null);
+  const [productsData, setProductsData] = useState([]);
 
-  return (
-    <React.Fragment>
-      <Cart />
-    </React.Fragment>
-  );
+  useEffect(() => {
+    const userString = localStorage.getItem("user");
+    const id = userString ? JSON.parse(userString).id : null;
+
+    // getAPi cart theo customerId
+    if (id) {
+      axiosClient
+        .get(`/cart/${id}`)
+        .then((response) => {
+          const cartData = response.data.payload;
+          setCartData(cartData);
+
+          const productIds = cartData.productId;
+          axiosClient
+            .get(`/products/${productIds}`)
+            .then((responses) => {
+              const productsData = responses.data;
+              setProductsData(productsData);
+              console.log("productsData", productsData);
+            })
+            .catch((error) => {
+              console.log("error: ", error);
+            });
+        })
+        .catch((error) => {
+          console.log("error :>> ", error);
+        });
+    }
+  }, []);
+
+  if (!cartData || !Array.isArray(productsData)) {
+    return <p>Loading...</p>;
+  }
+
+  return <React.Fragment></React.Fragment>;
 };
 
 export default Index;
-
-export async function getServerSideProps() {
-  try {
-    const res = await axiosClient.get("/categories");
-    const category = res.data;
-
-    return {
-      props: {
-        category,
-      },
-    };
-  } catch (error) {
-    console.log("error :>> ", error);
-    return {
-      notFound: true,
-    };
-  }
-}

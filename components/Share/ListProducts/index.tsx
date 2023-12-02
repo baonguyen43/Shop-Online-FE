@@ -8,7 +8,10 @@ type Props = {
   sectionTitle?: JSX.Element;
 };
 const ListProducts = React.forwardRef<HTMLDivElement, Props>(
-  ({ products, bgClassName, sectionTitle }: Props, ref): JSX.Element | null => {
+  (
+    { products, bgClassName, sectionTitle }: Props,
+    _ref
+  ): JSX.Element | null => {
     //Format Price
     const formatPrice = (price: number) => {
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

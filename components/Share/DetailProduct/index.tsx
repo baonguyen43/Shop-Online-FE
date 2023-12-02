@@ -2,13 +2,13 @@ import axiosClient from "@/#@/libraries/axiosClient";
 import { Form, InputNumber } from "antd";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 
 type Props = {
   productDetail?: any;
 };
 const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
-  ({ productDetail }: Props, ref): JSX.Element | null => {
+  ({ productDetail }: Props, _ref): JSX.Element | null => {
     const [user, setUser] = React.useState();
 
     const [quantity, setQuantity] = useState<number | null>(null);
@@ -37,30 +37,53 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
     }, []);
     // console.log("user state :>> ", user);
 
-    const addToCart = (productDetail: any, user: any) => {
+    const addToCart = async (productDetail: any, user: any) => {
       const customerId = user?.id; // Lấy customerId từ user state
       const productId = productDetail.id;
       // console.log("productDetail:>> ", productDetail);
       console.log("Customer:>> ", user);
       if (quantity !== null) {
         // console.log("quantity:>> ", quantity);
-        console.log("customerId:>> ", customerId);
         console.log("productId:>> ", productId);
+        console.log("quantity:>> ", quantity);
 
-        axiosClient
+        await axiosClient
           .post("/cart", {
             customerId: customerId,
             productId: productId,
             quantity: quantity,
           })
+
           .then((response) => {
-            console.log(response.data);
+            console.log("data:>> ", response.data);
           })
           .catch((error) => {
             console.error("Lỗi:", error);
           });
       }
     };
+
+    // const addToCart = useCallback(
+    //   async (values: any) => {
+    //     const user: { id?: string | null } = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {};
+
+    //     const customerId = user?.id; // Lấy customerId từ user state
+    //     const productId = productDetail.id;
+
+    //     try {
+    //       const res = await axiosClient.post("/cart", {
+    //         ...values,
+    //         customerId: customerId,
+    //         productId: productId,
+    //       });
+
+    //       console.log(res.data);
+    //     } catch (error) {
+    //       console.error("Lỗi:", error);
+    //     }
+    //   },
+    //   [productDetail]
+    // );
 
     return (
       <React.Fragment>

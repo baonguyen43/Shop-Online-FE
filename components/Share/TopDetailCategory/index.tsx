@@ -7,7 +7,7 @@ type Props = {
   products?: any;
 };
 const TopDetailCategory = React.forwardRef<HTMLDivElement, Props>(
-  ({ products }: Props, ref): JSX.Element | null => {
+  ({ products }: Props, _ref): JSX.Element | null => {
     const formatPrice = (price: number) => {
       //tạo dấu phẩy hàng nghìn cho Price
       return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

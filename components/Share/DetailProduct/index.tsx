@@ -63,28 +63,6 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
       }
     };
 
-    // const addToCart = useCallback(
-    //   async (values: any) => {
-    //     const user: { id?: string | null } = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : {};
-
-    //     const customerId = user?.id; // Lấy customerId từ user state
-    //     const productId = productDetail.id;
-
-    //     try {
-    //       const res = await axiosClient.post("/cart", {
-    //         ...values,
-    //         customerId: customerId,
-    //         productId: productId,
-    //       });
-
-    //       console.log(res.data);
-    //     } catch (error) {
-    //       console.error("Lỗi:", error);
-    //     }
-    //   },
-    //   [productDetail]
-    // );
-
     return (
       <React.Fragment>
         <div className="detail-product">

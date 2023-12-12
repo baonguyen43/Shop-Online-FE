@@ -1,12 +1,12 @@
-import Link from "next/link";
-import { Kanit, Lobster } from "next/font/google";
-import styles from "../../../styles/Navbar.module.css";
-import { BsSearch } from "react-icons/bs";
-import { useState } from "react";
 import axiosClient from "@/#@/libraries/axiosClient";
+import { Kanit, Lobster } from "next/font/google";
+import Link from "next/link";
+import { useState } from "react";
+import { BsSearch } from "react-icons/bs";
+import styles from "../../../styles/Navbar.module.css";
 const kanit = Kanit({ subsets: ["latin"], weight: ["700", "400"] });
 const lob = Lobster({ subsets: ["latin"], weight: ["400"] });
-
+import { ShoppingCartOutlined } from "@ant-design/icons";
 const NavBar = () => {
   const [search, setSearch] = useState("");
   const handleSearch = async () => {
@@ -24,7 +24,10 @@ const NavBar = () => {
   return (
     <div className={styles.navbar}>
       <div className="py-4  border-b-[1px] ">
-        <div className={styles.container}>
+        <div
+          className={styles.container}
+          style={{ fontSize: "30px", paddingBottom: "5px" }}
+        >
           <Link href="/" className={`${lob.className} ml-3 font-bold text-2xl`}>
             Shop Online
           </Link>
@@ -44,10 +47,11 @@ const NavBar = () => {
               </div>
             </div>
           </div>
-          <div className={styles.right}>
-            <Link href="/"> Cart</Link>
-
-            <Link href="/"> UserMenu</Link>
+          <div className={styles.right} style={{ paddingBottom: "15px" }}>
+            <Link href="/cart">
+              {" "}
+              <ShoppingCartOutlined style={{ fontSize: "40px" }} />
+            </Link>
           </div>
         </div>
       </div>

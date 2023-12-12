@@ -1,49 +1,26 @@
 import Cart from "@/#@/components/Share/Cart";
+import { useCartStore } from "@/#@/hook/useCartStore";
 import axiosClient from "@/#@/libraries/axiosClient";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useCallback, useEffect, useState } from "react";
 
 const Index = (): JSX.Element | null => {
-  // client-side rendering
-  const [cartData, setCartData] = useState(null);
-  const [productsData, setProductsData] = useState([]);
+  const {
+    items,
+    total,
+    itemCount,
+    removeItem,
+    increaseQuantity,
+    decreaseQuantity,
+  } = useCartStore();
+  // const navigate = useNavigate();
 
-  useEffect(() => {
-    const userString = localStorage.getItem("user");
-    const id = userString ? JSON.parse(userString).id : null;
-
-    // getAPi cart theo customerId
-    if (id) {
-      axiosClient
-        .get(`/cart/${id}`)
-        .then((response) => {
-          const cartData = response.data.payload;
-          setCartData(cartData);
-
-          const productIds = cartData.productId;
-          axiosClient
-            .get(`/products/${productIds}`)
-            .then((responses) => {
-              const productsData = responses.data;
-              setProductsData(productsData);
-              console.log("productsData", productsData);
-            })
-            .catch((error) => {
-              console.log("error: ", error);
-            });
-        })
-        .catch((error) => {
-          console.log("error :>> ", error);
-        });
-    }
-  }, []);
-
-  if (!cartData || !Array.isArray(productsData)) {
-    return <p>Loading...</p>;
-  }
-
-  return <React.Fragment></React.Fragment>;
+  return (
+    <React.Fragment>
+      <Cart />
+    </React.Fragment>
+  );
 };
 
 export default Index;

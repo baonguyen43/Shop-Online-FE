@@ -1,3 +1,4 @@
+import { useCartStore } from "@/#@/hook/useCartStore";
 import axiosClient from "@/#@/libraries/axiosClient";
 import { Form, InputNumber } from "antd";
 import Image from "next/image";
@@ -9,10 +10,11 @@ type Props = {
 };
 const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
   ({ productDetail }: Props, _ref): JSX.Element | null => {
+    const { addItem } = useCartStore();
+
     const [user, setUser] = React.useState();
 
-    const [quantity, setQuantity] = useState<number | null>(null);
-
+    const [quantity, setQuantity] = useState<number>(1);
     //FORMAT GIÁ
     const formatPrice = (price: number) => {
       //tạo dấu phẩy hàng nghìn cho Price
@@ -24,6 +26,8 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
 
     //Giá sau giảm giá
     const formatTotal = formatPrice(discountedPrice);
+
+    const numericPrice = parseFloat(formatTotal.replace(",", ""));
 
     // GET CUSTOMERID
     React.useEffect(() => {
@@ -37,31 +41,30 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
     }, []);
     // console.log("user state :>> ", user);
 
-    const addToCart = async (productDetail: any, user: any) => {
-      const customerId = user?.id; // Lấy customerId từ user state
-      const productId = productDetail.id;
-      // console.log("productDetail:>> ", productDetail);
-      console.log("Customer:>> ", user);
-      if (quantity !== null) {
-        // console.log("quantity:>> ", quantity);
-        console.log("productId:>> ", productId);
-        console.log("quantity:>> ", quantity);
+    // const addToCart = async (productDetail: any, user: any) => {
+    //   const customerId = user?.id; // Lấy customerId từ user state
+    //   const productId = productDetail.id;
+    //   // console.log("productDetail:>> ", productDetail);
+    //   // console.log("Customer:>> ", user);
+    //   if (quantity !== null) {
+    //     // console.log("quantity:>> ", quantity);
+    //     console.log("productId:>> ", productId);
+    //     console.log("quantity:>> ", quantity);
+    //     // await axiosClient
+    //     //   .post("/cart", {
+    //     //     customerId: customerId,
+    //     //     productId: productId,
+    //     //     quantity: quantity,
+    //     //   })
 
-        await axiosClient
-          .post("/cart", {
-            customerId: customerId,
-            productId: productId,
-            quantity: quantity,
-          })
-
-          .then((response) => {
-            console.log("data:>> ", response.data);
-          })
-          .catch((error) => {
-            console.error("Lỗi:", error);
-          });
-      }
-    };
+    //     //   .then((response) => {
+    //     //     console.log("data:>> ", response.data);
+    //     //   })
+    //     //   .catch((error) => {
+    //     //     console.error("Lỗi:", error);
+    //     //   });
+    //   }
+    // };
 
     return (
       <React.Fragment>
@@ -127,13 +130,17 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
                     <div className="section">
                       <span style={{ marginRight: "65px" }}> Số lượng: </span>
                       <span>
-                        <Form.Item name="input-number" noStyle>
-                          <InputNumber
-                            min={1}
-                            max={100}
-                            onChange={(value) => setQuantity(value)}
-                          />
-                        </Form.Item>{" "}
+                        <Form>
+                          {" "}
+                          <Form.Item name="input-number" noStyle>
+                            <InputNumber
+                              min={1}
+                              max={100}
+                              defaultValue={quantity ?? 1}
+                              onChange={(value) => setQuantity(value as number)}
+                            />
+                          </Form.Item>{" "}
+                        </Form>
                         <i style={{ fontSize: "12px" }}>
                           Số lượng sản phẩm có sẵn {productDetail.stock}
                         </i>{" "}
@@ -144,8 +151,24 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
                     <div className="section">
                       <div>
                         <div
+                          style={{ cursor: "pointer" }}
                           className="default-btn gap-2"
-                          onClick={() => addToCart(productDetail, user)}
+                          onClick={() =>
+                            // addToCart(productDetail, user)
+                            {
+                              console.log(
+                                "Thêm vào giỏ hàng",
+                                productDetail.id
+                              );
+                              addItem({
+                                id: productDetail.id,
+                                name: productDetail.name,
+                                price: numericPrice,
+                                quantity: quantity,
+                                // thumb: productDetail.imagePath,
+                              });
+                            }
+                          }
                         >
                           Thêm vào giỏ hàng
                         </div>

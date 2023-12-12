@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import {create} from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 
@@ -6,7 +7,7 @@ interface CartItem {
   name: string;
   price: number;
   quantity: number;
-  thumb: string;
+  // thumb: string;
 }
 
 interface CartStore {
@@ -30,6 +31,8 @@ export const useCartStore = create(
           const existingItem = state.items.find((i) => i.id === item.id);
           if (existingItem) {
             // Nếu mặt hàng đã tồn tại, tăng số lượng lên 1
+            message.info('Mặt hàng đã tồn tại trong giỏ hàng. Số lượng đã được tăng lên 1.');
+
             return {
               ...state,
               items: state.items.map((i) =>
@@ -37,9 +40,11 @@ export const useCartStore = create(
               ),
               total: state.total + item.price,
               itemCount: state.itemCount + 1,
+
             };
           } else {
             // Nếu mặt hàng chưa tồn tại, thêm vào giỏ hàng
+            message.success('Mặt hàng đã được thêm vào giỏ hàng.');
             return {
               ...state,
               items: [...state.items, item],
@@ -52,7 +57,7 @@ export const useCartStore = create(
         set((state) => {
           const itemToRemove = state.items.find((item) => item.id === id);
           if (!itemToRemove) return state;
-
+          message.success('Mặt hàng đã được xóa khỏi giỏ hàng.');
           return {
             items: state.items.filter((item) => item.id !== id),
             total: state.total - itemToRemove.price * itemToRemove.quantity,

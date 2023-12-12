@@ -2,15 +2,13 @@
 import type { AppProps } from "next/app";
 
 import "@/#@/styles/bootstrap.min.css";
-import "@/#@/styles/style.css";
-import "@/#@/styles/styles.scss";
 import "@/#@/styles/boxicons.min.css";
 import "@/#@/styles/responsive.scss";
+import "@/#@/styles/style.css";
+import "@/#@/styles/styles.scss";
 
+import React from "react";
 import Layout from "../components/Layout";
-import React, { useEffect } from "react";
-import axiosClient from "../libraries/axiosClient";
-import { useRouter } from "next/router";
 
 // import "@/#@/styles/styles.scss";
 

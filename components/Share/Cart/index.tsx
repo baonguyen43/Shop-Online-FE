@@ -1,70 +1,85 @@
+import { useCartStore } from "@/#@/hook/useCartStore";
 import { Button, InputNumber } from "antd";
 import React from "react";
 
-type Props = {
-  cartDetails?: any;
-};
+type Props = {};
 const Cart = React.forwardRef<HTMLDivElement>(
-  ({ cartDetails }: Props, _ref): JSX.Element | null => {
+  ({}: Props, _ref): JSX.Element | null => {
+    const {
+      items,
+      total,
+      itemCount,
+      removeItem,
+      increaseQuantity,
+      decreaseQuantity,
+    } = useCartStore();
+
+    //tạo dấu phẩy hàng nghìn cho Price
+    const formatPrice = (price: number) => {
+      return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    };
     return (
       <React.Fragment>
         <div className="container">
           <div className="cart-details">
             {/* TITLE */}
-            <div className="cart-header">GIỎ HÀNG </div>
+            <div className="cart-header">GIỎ HÀNG</div>
 
-            {/* MAIN   */}
-
-            <div className="cart-body">
-              <div className="body-top">
-                <div className="flex align-items-center">
-                  <>NHÀ CUNG CẤP</>
-                </div>
-              </div>
-
-              <div className="body-mid">
-                <div className="mid-container">
-                  <div className="mid-cdisplay">
-                    <div className="mid-product">
-                      <img />
-                      Ảnh sản phẩm
-                      <div className="mid-title">
-                        <p> Tên sản phẩm </p>
-                      </div>
-                    </div>
-                    <div className="mid-price">
-                      <div>
-                        <span>GIÁ CŨ </span>
-                      </div>
-                    </div>
-                    <div className="mid-quantity">
-                      SỐ LƯỢNG
-                      <InputNumber />
-                    </div>
-                    <div className="mid-total-price">
-                      <a style={{ color: "red" }}>119, 200 d</a>
-                    </div>
-                    <div className="mid-del">
-                      <Button>XÓA</Button>
-                    </div>
+            {itemCount > 0 ? (
+              /* MAIN */
+              <div className="cart-body">
+                <div className="body-top">
+                  <div className="flex align-items-center">
+                    <span>NHÀ CUNG CẤP</span>
                   </div>
                 </div>
-              </div>
-            </div>
-            {cartDetails &&
-              cartDetails.map((c: any) => {
-                <div className="cart-body" key={c.id}>
-                  {c.body}
-                </div>;
-              })}
 
-            <div>
-              FOOTER
-              <div>
-                <p>Tổng thanh toán : </p>
-                <Button> Mua hàng </Button>
+                {/* DATA HERE  */}
+                {items.map((item: any) => {
+                  return (
+                    <div className="body-mid" key={item.id}>
+                      <div className="mid-container">
+                        <div className="mid-cdisplay">
+                          <div className="mid-product">
+                            {/* <img src={item.thumb} alt="Ảnh sản phẩm" /> */}
+                            <div className="mid-title">
+                              <p>{item.name}</p>
+                            </div>
+                          </div>
+                          <div className="mid-price">
+                            <div>
+                              <span> {formatPrice(item.price)}đ </span>
+                            </div>
+                          </div>
+                          <div className="mid-quantity">
+                            SỐ LƯỢNG
+                            <InputNumber value={item.quantity} />
+                          </div>
+                          <div className="mid-total-price">
+                            <a style={{ color: "red" }}>
+                              {formatPrice(item.price * item.quantity)}đ
+                            </a>
+                          </div>
+                          <div className="mid-del">
+                            <Button onClick={() => removeItem(item.id)}>
+                              XÓA
+                            </Button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {/* TINH TIEN */}
+                <div>
+                  <p>Tổng thanh toán: {formatPrice(total)} đ </p>
+                  <Button>Mua hàng</Button>
+                </div>
               </div>
-            </div>
+            ) : (
+              <div>CART EMPTY</div>
+            )}
           </div>
         </div>
       </React.Fragment>

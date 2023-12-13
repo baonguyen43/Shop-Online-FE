@@ -8,6 +8,7 @@ interface CartItem {
   price: number;
   quantity: number;
   // thumb: string;
+  discount: number;
 }
 
 interface CartStore {

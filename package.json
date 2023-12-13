@@ -16,6 +16,7 @@
     "bootstrap-icons": "^1.11.1",
     "material-icons": "^1.13.12",
     "next": "13.5.4",
+    "numeral": "^2.0.6",
     "react": "^18",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/numeral": "^2.0.5",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",

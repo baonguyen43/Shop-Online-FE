@@ -499,6 +499,7 @@ background-color: $bg05-color;
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
+                width: -webkit-fill-available;
               .mid-title{
 
                 flex: 1;
@@ -507,12 +508,14 @@ background-color: $bg05-color;
               }
             }
             .mid-price {
+              width: -webkit-fill-available;
               display: flex;
               align-items: center;
             }
             .mid-quantity{
               display: flex;
               align-items: center;
+              width: -webkit-fill-available;
     // justify-content: center;
     // flex-direction: column;
     // width: 15.4265%;
@@ -525,7 +528,7 @@ background-color: $bg05-color;
             }
             }
             .mid-del{
-              width: 12.70417%;
+              width: -webkit-fill-available;
               text-transform: capitalize;
               display: flex;
     align-items: center;

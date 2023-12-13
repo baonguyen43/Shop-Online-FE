@@ -27,7 +27,7 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
     //Giá sau giảm giá
     const formatTotal = formatPrice(discountedPrice);
 
-    const numericPrice = parseFloat(formatTotal.replace(",", ""));
+    const numericPrice = parseFloat(formatTotal.replace(/[^0-9.-]+/g, ""));
 
     // GET CUSTOMERID
     React.useEffect(() => {
@@ -165,6 +165,7 @@ const DetailProduct = React.forwardRef<HTMLDivElement, Props>(
                                 name: productDetail.name,
                                 price: numericPrice,
                                 quantity: quantity,
+                                discount: productDetail.discount,
                                 // thumb: productDetail.imagePath,
                               });
                             }
